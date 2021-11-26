@@ -23,6 +23,7 @@ public abstract class abstractEntity <ID extends Serializable> implements Serial
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
+		@SuppressWarnings("rawtypes")
 		abstractEntity other = (abstractEntity) obj;
 		return Objects.equals(id, other.id);
 	}

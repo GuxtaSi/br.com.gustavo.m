@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html layout:decorate="~{layout}">
 <head>
-<meta charset="UTF-8" />
-</head>
+<meta charset="UTF-8" /></head>
 <body>
 
-	
-	    <section class="layout-content" layout:fragments="corpo">
-	
+	    <section class="layout-content" layout:fragment="corpo">
 	        <nav class="navbar navbar-expand-md bg-light">
 	            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
 	                <ul class="navbar-nav mr-auto">
@@ -39,8 +36,8 @@
 	                        <label for="departamento">Departamento</label>
 	                        <select id="departamento" class="form-control" name="departamento">
 	                            <option value="">Selecione</option>
-	                            <option th:each="d:${departamento}"
-	                            th:value="${d.id}"th:text=${d.nome}>Administração</option>
+	                            <option th:each="d:${cargos}"
+	                            th:value="${d.id}"th:text="${d.nome}">Administração</option>
 	                        </select>
 	                    </div>
 	                </div>

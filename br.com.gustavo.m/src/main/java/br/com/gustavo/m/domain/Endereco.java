@@ -3,15 +3,19 @@ package br.com.gustavo.m.domain;
 import javax.persistence.*;
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "ENDERECO")
+@Table(name = "ENDERECOS")
 public class Endereco extends abstractEntity<Long> {
 	
 	@Column(nullable = false)
 	private String logradouro;
+	
+	@Column(nullable = false)
+	private String bairro ;
 
 	@Column(nullable = false)
 	private String cidade;
-
+	
+	
 	@Column(nullable = false , length = 2)
 	@Enumerated(EnumType.STRING)
 	private UF uf;
@@ -23,6 +27,14 @@ public class Endereco extends abstractEntity<Long> {
 	private Integer numero;
 	
 	private String complemento;
+	
+	public String getBairro() {
+		return bairro;
+	}
+
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
 
 	public String getLogradouro() {
 		return logradouro;
