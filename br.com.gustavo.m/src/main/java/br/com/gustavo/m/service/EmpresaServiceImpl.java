@@ -6,22 +6,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.gustavo.m.dao.DepartamentoDao;
-import br.com.gustavo.m.domain.Departamento;
+import br.com.gustavo.m.dao.EmpresaDao;
+import br.com.gustavo.m.domain.Empresa;
 @Service
-public class DepartamentoServiceImpl implements DepartamentoService{
+public class EmpresaServiceImpl implements EmpresaService{
 	@Autowired
-  private DepartamentoDao dao;
+  private EmpresaDao dao;
   
 	@Override @Transactional(readOnly = false)
-	public void salvar(Departamento departamento) {
-		dao.save(departamento);
+	public void salvar(Empresa empresa) {
+		dao.save(empresa);
 		
 	}
 
 	@Override @Transactional(readOnly = false)
-	public void editar(Departamento departamento) {
-		dao.update(departamento);
+	public void editar(Empresa empresa) {
+		dao.update(empresa);
 		
 	}
 
@@ -32,21 +32,21 @@ public class DepartamentoServiceImpl implements DepartamentoService{
 	}
 
 	@Override @Transactional(readOnly = true)
-	public Departamento buscarPorId(Long id) {
+	public Empresa buscarPorId(Long id) {
 		
 		return dao.findById(id);
 	}
 
 	@Override@Transactional(readOnly = true)
-	public List<Departamento> buscarTodos() {
+	public List<Empresa> buscarTodos() {
 		
 		return dao.findAll();
 	}
 
 	@Override
-	public boolean departamentoTemCargos(Long id) {
+	public boolean empresaTemProfissao(Long id) {
 		
-		if(buscarPorId(id).getCargos().isEmpty()) {
+		if(buscarPorId(id).getProfissao().isEmpty()) {
 			return false;
 		}
 		

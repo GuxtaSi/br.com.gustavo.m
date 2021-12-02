@@ -13,28 +13,26 @@ import org.springframework.format.annotation.NumberFormat.Style;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "FUNCIONARIO")
-public class Funcionario extends abstractEntity<Long> {
+@Table(name = "CLIENTE")
+public class Cliente extends abstractEntity<Long> {
 	@Column(nullable = false, unique = true)
 	private String nome;
 	@NumberFormat(style = Style.CURRENCY,pattern = "#,##0.00")
 	@Column(nullable = false, columnDefinition="DECIMAL(7,2) DEFAULT 0.00")
 	private BigDecimal salario;
 	@DateTimeFormat(iso=ISO.DATE)
-	@Column(name ="data_entrada", nullable = false,columnDefinition = "DATE")
-	private LocalDate dataEntrada ;
+	@Column(name ="data_cadastro", nullable = false,columnDefinition = "DATE")
+	private LocalDate dataCadastro ;
 
-	@DateTimeFormat(iso=ISO.DATE)
-	@Column(name ="data_saida", columnDefinition="DATE")
-	private LocalDate dataSaida;
+	
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "endereco_id_fk")
 	private Endereco endereco;
 	
 	@ManyToOne
-	@JoinColumn(name = "cargo_id_fk")
-	private Cargo cargo;
+	@JoinColumn(name = "profissao_id_fk")
+	private Profissao profissao;
 
 	public String getNome() {
 		return nome;
@@ -52,20 +50,14 @@ public class Funcionario extends abstractEntity<Long> {
 		this.salario = salario;
 	}
 
-	public LocalDate getDataSaida() {
-		return dataSaida;
-	}
 
-	public void setDataSaida(LocalDate dataSaida) {
-		this.dataSaida = dataSaida;
-	}
 	
-	public LocalDate getDataEntrada() {
-		return dataEntrada;
+	public LocalDate getDataCadastro() {
+		return dataCadastro;
 	}
 
-	public void setDataEntrada(LocalDate dataEntrada) {
-		this.dataEntrada = dataEntrada;
+	public void setDataCadastro(LocalDate dataCadastro) {
+		this.dataCadastro = dataCadastro;
 	}
 
 
@@ -77,11 +69,13 @@ public class Funcionario extends abstractEntity<Long> {
 		this.endereco = endereco;
 	}
 
-	public Cargo getCargo() {
-		return cargo;
+	public Profissao getProfissao() {
+		return profissao;
 	}
 
-	public void setCargo(Cargo cargo) {
-		this.cargo = cargo;
+	public void setProfissao(Profissao profissao) {
+		this.profissao = profissao;
 	}
+
+	
 }

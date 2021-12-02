@@ -8,12 +8,12 @@
 	                <ul class="navbar-nav mr-auto">
 	                    <li class="nav-item active">
 	                        <i class="oi oi-caret-right"></i>
-	                        <span>Cadastrar Departamentos</span>
+	                        <span>Cadastrar Empresas</span>
 	                    </li>
 	                </ul>
-	                <a class="btn btn-primary btn-md" href="/departamentos/listar" role="button">
+	                <a class="btn btn-primary btn-md" href="/empresas/listar" role="button">
 	                    <span class="oi oi-spreadsheet" title="Listar" aria-hidden="true"></span>
-	                    <span>Listar Departamentos</span>
+	                    <span>Listar Empresas</span>
 	                </a>
 	            </div>
 	        </nav>
@@ -23,13 +23,13 @@
 	       <div th:replace="fragments/alert"></div>
 	        
 	        
-	            <form th:action="${departamento.id == null} ? @{/departamentos/salvar} :@{/departamento/editar}"
-	            th:object= "${departamento}" method="POST">
+	            <form th:action="${empresa.id == null} ? @{/empresas/salvar} :@{/empresa/editar}"
+	            th:object= "${empresa}" method="POST">
 	                <div class="form-row">
 	                    <div class="form-group col-md-6">
-	                        <label for="nome">Departamento</label>
+	                        <label for="nome">Empresa</label>
 	                        <input type="text" class="form-control" id="nome"
-	                               placeholder="Nome Departamento" autofocus="autofocus" th:field="*{nome}"/>
+	                               placeholder="Nome Empresa" autofocus="autofocus" th:field="*{nome}"/>
 	                    </div>
 	                </div>
 	                <input type="hidden" th:field="*{id}"/>

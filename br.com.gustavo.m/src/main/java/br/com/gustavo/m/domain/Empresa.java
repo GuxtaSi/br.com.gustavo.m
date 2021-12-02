@@ -5,14 +5,14 @@ import java.util.List;
 import javax.persistence.*;
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "DEPARTAMENTOS")
-public class Departamento extends abstractEntity<Long>{
+@Table(name = "EMPRESAS")
+public class Empresa extends abstractEntity<Long>{
 	
 	@Column(name = "nome" , nullable= false , unique = true, length = 60 )
 	private String nome;
 	
-	@OneToMany(mappedBy = "departamento")
-	private List<Cargo> cargos;
+	@OneToMany(mappedBy = "empresa")
+	private List<Profissao> profissao;
 
 	public String getNome() {
 		return nome;
@@ -21,12 +21,12 @@ public class Departamento extends abstractEntity<Long>{
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public List<Cargo> getCargos() {
-		return cargos;
+	public List<Profissao> getProfissao() {
+		return profissao;
 	}
 
-	public void setCargos(List<Cargo> cargos) {
-		this.cargos = cargos;
+	public void setProfissao(List<Profissao> profissao) {
+		this.profissao = profissao;
 	}
 
 }
