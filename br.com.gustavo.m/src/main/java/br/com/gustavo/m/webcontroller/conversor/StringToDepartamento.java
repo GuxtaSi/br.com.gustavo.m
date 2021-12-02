@@ -4,17 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
-import br.com.gustavo.m.domain.Profissao;
-import br.com.gustavo.m.service.ProfissaoService;
-
+import br.com.gustavo.m.domain.Departamento;
+import br.com.gustavo.m.service.DepartamentoService;
 
 @Component
-public class StringToProfissao implements Converter<String, Profissao> {
-	
-	@Autowired
-	private ProfissaoService service;
+public class StringToDepartamento implements Converter<String, Departamento>{
+    @Autowired
+	private DepartamentoService service;
 	@Override
-	public Profissao convert(String text) {
+	public Departamento convert(String text) {
 		if(text.isEmpty()) {
 		return null;
 	}
@@ -22,5 +20,4 @@ public class StringToProfissao implements Converter<String, Profissao> {
 		return service.buscarPorId(id);
 
 }
-
 }

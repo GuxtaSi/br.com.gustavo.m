@@ -5,21 +5,21 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.gustavo.m.dao.ClienteDao;
-import br.com.gustavo.m.domain.Cliente;
+import br.com.gustavo.m.dao.FuncionarioDao;
+import br.com.gustavo.m.domain.Funcionario;
 @Transactional (readOnly = true)
 @Service
-public class ClienteServiceImpl implements ClienteService{
- private ClienteDao dao;
+public class FuncionarioServiceImpl implements FuncionarioService{
+ private FuncionarioDao dao;
 	@Override
-	public void salvar(Cliente cliente) {
-		dao.save(cliente);
+	public void salvar(Funcionario funcionario) {
+		dao.save(funcionario);
 		
 	}
 
 	@Override @Transactional (readOnly = false)
-	public void editar(Cliente cliente) {
-		dao.update(cliente);
+	public void editar(Funcionario funcionario) {
+		dao.update(funcionario);
 		
 	}
 
@@ -30,13 +30,13 @@ public class ClienteServiceImpl implements ClienteService{
 	}
 
 	@Override
-	public Cliente buscarPorId(Long id) {
+	public Funcionario buscarPorId(Long id) {
 		
 		return dao.findById(id);
 	}
 
 	@Override
-	public List<Cliente> buscarTodos() {
+	public List<Funcionario> buscarTodos() {
 		
 		return dao.findAll();
 	}

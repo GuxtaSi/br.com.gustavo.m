@@ -6,22 +6,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.gustavo.m.dao.ProfissaoDao;
-import br.com.gustavo.m.domain.Profissao;
+import br.com.gustavo.m.dao.CargoDao;
+import br.com.gustavo.m.domain.Cargo;
 @Service @Transactional(readOnly = false)
-public class ProfissaoServiceImpl implements ProfissaoService{
+public class CargoServiceImpl implements CargoService{
 	@Autowired
-	private ProfissaoDao dao;
+	private CargoDao dao;
 
 	@Override
-	public void salvar(Profissao profissao) {
-		dao.save(profissao);
+	public void salvar(Cargo cargo) {
+		dao.save(cargo);
 		
 	}
 
 	@Override
-	public void editar(Profissao profissao) {
-		dao.update(profissao);
+	public void editar(Cargo cargo) {
+		dao.update(cargo);
 		
 	}
 
@@ -32,25 +32,23 @@ public class ProfissaoServiceImpl implements ProfissaoService{
 	}
 
 	@Override @Transactional(readOnly = true)
-	public Profissao buscarPorId(Long id) {
+	public Cargo buscarPorId(Long id) {
 		dao.findById(id);
 		return null;
 	}
 
 	@Override @Transactional(readOnly = true)
-	public List<Profissao> buscarTodos() {
+	public List<Cargo> buscarTodos() {
 		dao.findAll();
 		return null;
 	}
 
-	
-
 	@Override
-	public boolean profissaoTemFuncionario(Long id) {
-		if(buscarPorId(id).getFuncionarios().isEmpty()) {
-			return false;
-		}
-	
-	return true;
+	public boolean cargoTemFuncionario(Long id) {
+	if(buscarPorId(id).getFuncionarios().isEmpty()) {
+		return false;
 	}
+		return true;
+	}
+
 }

@@ -8,12 +8,12 @@
 	                <ul class="navbar-nav mr-auto">
 	                    <li class="nav-item active">
 	                        <i class="oi oi-caret-right"></i>
-	                        <span>Lista de Clientes</span>
+	                        <span>Lista de Funcionários</span>
 	                    </li>
 	                </ul>
-	                <a class="btn btn-primary btn-md" href="/clientes/cadastrar" role="button">
+	                <a class="btn btn-primary btn-md" href="/funcionarios/cadastrar" role="button">
 	                    <span class="oi oi-plus" title="Cadastro" aria-hidden="true"></span>
-	                    <span>Cadastrar Clientes</span>
+	                    <span>Cadastrar Funcionários</span>
 	                </a>
 	            </div>
 	        </nav>
@@ -25,8 +25,8 @@
 	                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseNome"
 	                        aria-controls="collapseNome">Nome
 	                </button>
-	                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseProfissao"
-	                        aria-controls="collapseProfissao">Profissao
+	                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseCargo"
+	                        aria-controls="collapseCargo">Cargo
 	                </button>
 	                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseData"
 	                        aria-controls="collapseData">Datas
@@ -37,7 +37,7 @@
 	                    <div class="collapse" id="collapseNome">
 	
 	                        <nav class="navbar navbar-light bg-light">
-	                            <form class="form-inline" method="GET" action="/clientes/buscar/nome">
+	                            <form class="form-inline" method="GET" action="/funcionarios/buscar/nome">
 	                                <input class="form-control mr-sm-2" type="search" placeholder="nome" aria-label="Search"
 	                                       name="nome" />
 	                                <button class="btn btn-outline-success my-2 my-sm-0">Search</button>
@@ -49,12 +49,12 @@
 	            </div>
 	            <div class="row">
 	                <div class="col">
-	                    <div class="collapse" id="collapseProfissao">
+	                    <div class="collapse" id="collapseCargo">
 	
 	                        <nav class="navbar navbar-light bg-light">
-	                            <form class="form-inline" method="GET" action="/clientes/buscar/profissao">
-	                                <select class="form-control mr-sm-2" name="profissao" aria-label="Search">
-	                                    <option value="">Profissao</option>
+	                            <form class="form-inline" method="GET" action="/funcionarios/buscar/cargo">
+	                                <select class="form-control mr-sm-2" name="cargo" aria-label="Search">
+	                                    <option value="">Cargo</option>
 	                                    <option value="1">Auxiliar Contábil</option>
 	                                    <option value="2">Auxiliar Administrativo</option>
 	                                    <option value="3">Contador</option>
@@ -79,7 +79,7 @@
 	                    <div class="collapse" id="collapseData">
 	
 	                        <nav class="navbar navbar-light bg-light">
-	                            <form class="form-inline" method="GET" action="/clientes/buscar/data">
+	                            <form class="form-inline" method="GET" action="/funcionarios/buscar/data">
 	                                <input class="form-control mr-sm-2" type="date" aria-label="Search"
 	                                       name="entrada" />
 	                                <input class="form-control mr-sm-2" type="date" aria-label="Search"
@@ -103,20 +103,21 @@
 	                        <th>#</th>
 	                        <th>Nome</th>
 	                        <th>Salário</th>
-	                        <th>Empresa</th>
-	                        <th>Profissao</th>
+	                        <th>Departamento</th>
+	                        <th>Cargo</th>
 	                        <th>Endereço</th>
-	                        <th>Data de Cadastro</th>
+	                        <th>Data de Entrada</th>
+	                        <th>Data de Saída</th>
 	                        <th>Ação</th>
 	                    </tr>
 	                    </thead>
 	                    <tbody>
-	                    <tr th:each="f : ${clientes}">
+	                    <tr th:each="f : ${funcionarios}">
 	                        <td th:text="${f.id}">1</td>
 	                        <td th:text="${f.nome}">Jorge da Silva</td>
 	                        <td th:text="|R$  ${{f.salario}}|">R$ 3.500,99</td>
-	                        <td th:text="${f.profissao.empresa.nome}">Recursos Humanos</td>
-	                        <td th:text="${f.profissao.nome}">Auxiliar de RH</td>
+	                        <td th:text="${f.cargo.departamento.nome}">Recursos Humanos</td>
+	                        <td th:text="${f.cargo.nome}">Auxiliar de RH</td>
 	                        
 	                        <td>
 	                            <button type="button" class="btn btn-secondary btn-sm"
@@ -134,13 +135,14 @@
 	                                <span class="oi oi-eye" title="Visualizar" aria-hidden="true"></span>
 	                            </button>
 	                        </td>
-	                        <td th:text="${#temporals.format(f.dataCadastro,'dd/MM/yyyy')}>01/10/2014</td>
+	                        <td th:text="${#temporals.format(f.dataEntrada,'dd/MM/yyyy')}>01/10/2014</td>
+	                        <tdth:text="${#temporals.format(f.Saida,'dd/MM/yyyy')}></td>
 	                        <td colspan="2">
 	                            <a class="btn btn-info btn-sm" 
-	                            th:href="@{/clientes/editar/{id} (id=${f.id})}" role="button">
+	                            th:href="@{/funcionarios/editar/{id} (id=${f.id})}" role="button">
 	                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
 	                            </a>
-	                            <button th: id="${#strings.concat('btn_clientes/excluir/',f.id)}" type="button" class="btn btn-danger btn-sm"
+	                            <button th: id="${#strings.concat('btn_funcionarios/excluir/',f.id)}" type="button" class="btn btn-danger btn-sm"
 	                                    data-toggle="modal" data-target="#myModal">
 	                                <span class="oi oi-circle-x" title="Excluir" aria-hidden="true"></span>
 	                            </button>
@@ -152,7 +154,7 @@
 	            </div>
 	        </div>
 	        
-	        <div th:replace="fragments/modal :: modal"> </div>
+	        <div"th:replace="fragments/modal :: modal"> </div>
 	    </section>
 
 	
